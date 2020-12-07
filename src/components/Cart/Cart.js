@@ -3,8 +3,10 @@ import { Container, Grid, Typography, Button } from "@material-ui/core";
 import useStyles from "./cart-styles";
 import CartItem from "./CartItem/CartItem";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
-const Cart = ({ cart,handleUpdateCart,handleRemoveCart,handleEmptyCart }) => {
+const Cart = ({ handleUpdateCart, handleRemoveCart, handleEmptyCart }) => {
+  const { cart } = useSelector((state) => state);
   const classes = useStyles();
 
   const EmptyCart = () => (
@@ -22,7 +24,11 @@ const Cart = ({ cart,handleUpdateCart,handleRemoveCart,handleEmptyCart }) => {
       <Grid container spacing={3}>
         {cart.line_items.map((item) => (
           <Grid item xs={12} sm={4} key={item.id}>
-            <CartItem item={item} onUpdateCart={handleUpdateCart} onRemoveCart={handleRemoveCart} />
+            <CartItem
+              item={item}
+              onUpdateCart={handleUpdateCart}
+              onRemoveCart={handleRemoveCart}
+            />
           </Grid>
         ))}
       </Grid>

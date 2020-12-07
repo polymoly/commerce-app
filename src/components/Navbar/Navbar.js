@@ -4,15 +4,16 @@ import {
   Toolbar,
   IconButton,
   Badge,
-  MenuItem,
   Typography,
 } from "@material-ui/core";
 import { ShoppingCart } from "@material-ui/icons";
 import logo from "../../assets/carts.png";
 import useStyles from "./styles";
 import { Link, useLocation } from "react-router-dom";
+import { useSelector } from "react-redux";
 
-const Navbar = ({ totalItems }) => {
+const Navbar = () => {
+  const { cart } = useSelector((state) => state);
   const classes = useStyles();
   const location = useLocation();
 
@@ -45,7 +46,7 @@ const Navbar = ({ totalItems }) => {
                 aria-label="show cart items"
                 color="inherit"
               >
-                <Badge badgeContent={totalItems} color="secondary">
+                <Badge badgeContent={cart.total_items} color="secondary">
                   <ShoppingCart />
                 </Badge>
               </IconButton>
